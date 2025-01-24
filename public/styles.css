@@ -6,70 +6,71 @@
 
 html {
   font-family: "Montserrat", sans-serif;
+  height: 100%; /* Ensure the html element takes full height */
 }
 
 body {
-  background-color: #f0f0f0; /* Light gray background for better contrast */
-  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  background: #eee;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   padding: 0 16px;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
 }
 
 header {
-  background-color: #4a90e2; /* Soft blue header */
+  background-color: #4a90e2;
+  margin: auto -16px;
   padding: 16px 32px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  text-align: center; /* Center header content */
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
   color: #fff;
   font-family: "McLaren", cursive;
   font-weight: 200;
+  text-align: center;
 }
 
 footer {
+  position: absolute;
   text-align: center;
+  bottom: 0;
   width: 100%;
   height: 2.5rem;
-  margin-top: 20px; /* Space above footer */
 }
 
 footer p {
-  color: #777; /* Darker gray for footer text */
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap; /* Allow notes to wrap */
-  justify-content: center; /* Center notes */
-  margin: 20px 0; /* Space around notes */
+  color: #ccc;
 }
 
 .note {
-  background: #ffffff; /* White background for notes */
+  background: #fff;
   border-radius: 7px;
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
-  width: 240px;
+  width: 240px; /* Fixed width for larger screens */
   margin: 16px;
-  flex: 1 1 240px; /* Allow notes to grow and shrink */
-  max-width: 300px; /* Max width for larger screens */
+  float: left;
 }
 
 .note h1 {
-  font-size: 1.2em; /* Slightly larger font size */
+  font-size: 1.1em;
   margin-bottom: 6px;
 }
 
 .note p {
-  font-size: 1em; /* Standardize font size */
+  font-size: 1.1em;
   margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 .note button {
-  color: #4a90e2; /* Button color matching header */
+  position: relative;
+  float: right;
+  margin-right: 10px;
+  color: #4a90e2;
   border: none;
   width: 36px;
   height: 36px;
@@ -78,10 +79,10 @@ footer p {
 }
 
 form.create-note {
-  width: 100%; /* Full width for responsiveness */
-  max-width: 480px; /* Max width for larger screens */
+  position: relative;
+  width: 480px; /* Fixed width for larger screens */
   margin: 30px auto 20px auto;
-  background: #ffffff; /* White background for form */
+  background: #fff;
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
@@ -91,7 +92,7 @@ form.create-note input,
 form.create-note textarea {
   width: 100%;
   border: none;
-  padding: 10px; /* Increased padding for better touch targets */
+  padding: 4px;
   outline: none;
   font-size: 1.2em;
   font-family: inherit;
@@ -99,7 +100,10 @@ form.create-note textarea {
 }
 
 form.create-note button {
-  background: #4a90e2; /* Button color matching header */
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #4a90e2;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -108,22 +112,47 @@ form.create-note button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
-  position: relative; /* Position relative for better alignment */
-  margin-top: 10px; /* Space above button */
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  header {
-    padding: 16px 16px; /* Adjust padding for smaller screens */
-  }
-
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
   .note {
-    width: 100%; /* Full width on smaller screens */
-    max-width: none; /* Remove max width */
+    width: calc(50% - 32px); /* Two notes per row on medium screens */
+  }
+}
+
+@media (max-width: 800px) {
+  .note {
+    width: calc(100% - 32px); /* Full width on small screens */
   }
 
   form.create-note {
-    width: 90%; /* Full width with some margin */
+    width: calc(100% - 32px); /* Full width on small screens */
   }
 }
+
+@media (max-width: 600px) {
+  header {
+    padding: 16px 16px; /* Adjust header padding for smaller screens */
+  }
+
+  header h1 {
+    font-size: 1.5em; /* Adjust font size for smaller screens */
+  }
+
+  footer {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
+  
+  footer p {
+    color: #ccc;
+  }
+}
+
+
+
+
